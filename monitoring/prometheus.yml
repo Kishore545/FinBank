@@ -1,0 +1,6 @@
+# finbank/monitoring/prometheus.yml
+
+scrape_configs:
+  - job_name: 'transaction-service'
+    static_configs:
+      - targets: ['transaction-service:8080']

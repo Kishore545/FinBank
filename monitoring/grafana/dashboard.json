@@ -1,0 +1,19 @@
+// finbank/monitoring/grafana/dashboard.json
+{
+  "dashboard": {
+    "id": null,
+    "title": "Transaction Metrics",
+    "panels": [
+      {
+        "type": "graph",
+        "title": "Transaction Requests",
+        "targets": [
+          {
+            "expr": "http_requests_total{handler=\"/transaction\"}",
+            "format": "time_series"
+          }
+        ]
+      }
+    ]
+  }
+}
