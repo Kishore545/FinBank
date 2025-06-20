@@ -1,4 +1,3 @@
-// finbank/transaction-service/tests/transaction_test.go
 package tests
 
 import (
@@ -7,7 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"transaction-service/handlers"
+	"transaction/handlers"
 )
 
 func TestCreateTransactionHandler(t *testing.T) {

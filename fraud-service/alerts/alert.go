@@ -1,23 +1,19 @@
-// finbank/fraud-service/alerts/alert.go
 package alerts
 
 import (
 	"fmt"
-	"log"
+	"fraud/models"
 )
 
-type Transaction struct {
-	ID        int
-	UserID    int
-	Amount    float64
-	Timestamp string
+// TriggerAlert is used in alerts_test.go
+func TriggerAlert(message string) string {
+	alertMsg := "Alert sent: " + message
+	fmt.Println(alertMsg)
+	return alertMsg
 }
 
-func InitAlertSystem() {
-	log.Println("Alert system initialized")
-}
-
-func SendAlert(tx Transaction) {
-	msg := fmt.Sprintf("ALERT: Fraudulent transaction detected! ID: %d, User: %d, Amount: %.2f", tx.ID, tx.UserID, tx.Amount)
-	log.Println(msg)
+// SendAlert is used in consumer.go
+func SendAlert(tx models.Transaction) {
+	msg := fmt.Sprintf("Fraud detected for user %d on transaction ID %d", tx.UserID, tx.ID)
+	TriggerAlert(msg)
 }

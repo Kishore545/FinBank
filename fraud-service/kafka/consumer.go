@@ -1,4 +1,3 @@
-// finbank/fraud-service/kafka/consumer.go
 package kafka
 
 import (
@@ -6,17 +5,12 @@ import (
 	"encoding/json"
 	"log"
 
-	"github.com/segmentio/kafka-go"
-	"fraud-service/rules"
-	"fraud-service/alerts"
-)
+	"fraud/alerts"
+	"fraud/models"
+	"fraud/rules"
 
-type Transaction struct {
-	ID        int     `json:"id"`
-	UserID    int     `json:"user_id"`
-	Amount    float64 `json:"amount"`
-	Timestamp string  `json:"timestamp"`
-}
+	"github.com/segmentio/kafka-go"
+)
 
 func ConsumeTransactions() {
 	r := kafka.NewReader(kafka.ReaderConfig{
@@ -33,7 +27,7 @@ func ConsumeTransactions() {
 			continue
 		}
 
-		var tx Transaction
+		var tx models.Transaction
 		err = json.Unmarshal(m.Value, &tx)
 		if err != nil {
 			log.Println("Invalid transaction format:", err)

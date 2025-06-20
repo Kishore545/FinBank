@@ -1,15 +1,15 @@
-// finbank/fraud-service/tests/rules_test.go
 package tests
 
 import (
+	"fraud/models"
+	"fraud/rules"
 	"testing"
-	"fraud-service/rules"
 )
 
 func TestIsFraudulent(t *testing.T) {
 	rules.LoadRules()
 
-	tx := rules.Transaction{
+	tx := models.Transaction{ // ✅ use models.Transaction
 		ID:        1,
 		UserID:    123,
 		Amount:    15000,

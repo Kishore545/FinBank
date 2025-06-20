@@ -1,13 +1,13 @@
-# finbank/deployments/k8s/fraud-hpa.yaml
+# finbank/deployments/k8s/transaction-hpa.yaml
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: fraud-hpa
+  name: transaction-hpa
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: fraud-service
+    name: transaction-service
   minReplicas: 2
   maxReplicas: 10
   metrics:

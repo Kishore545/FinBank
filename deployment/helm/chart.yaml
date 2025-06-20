@@ -1,4 +1,3 @@
-# finbank/deployments/helm/Chart.yaml
 apiVersion: v2
 name: finbank
 version: 0.1.0

@@ -1,17 +1,18 @@
-// finbank/transaction-service/queue/kafka_producer.go
 package queue
 
 import (
+	"context"
 	"encoding/json"
 	"log"
 
+	"transaction/models"
+
 	"github.com/segmentio/kafka-go"
-	"transaction-service/models"
 )
 
 var (
 	producer *kafka.Writer
-	txQueue = make(chan models.Transaction, 100)
+	txQueue  = make(chan models.Transaction, 100)
 )
 
 func InitKafkaProducer() {
@@ -34,7 +35,7 @@ func ProcessQueue() {
 			continue
 		}
 
-		err = producer.WriteMessages(nil, kafka.Message{
+		err = producer.WriteMessages(context.Background(), kafka.Message{
 			Key:   []byte(string(tx.ID)),
 			Value: msg,
 		})
